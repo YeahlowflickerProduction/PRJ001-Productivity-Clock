@@ -10,6 +10,7 @@ A simple looping countdown clock with customizable period. The application is bu
 - Period customization
 - Automatic looping
 - Start/Stop button
+- Notification sound support
 
 
 
