@@ -7,6 +7,7 @@ class Main(qtc.QObject):
     timer = None
     period = 0
     elapsed = 0
+    soundOn = True
 
     sig_updateTime = qtc.Signal(str)
 
@@ -27,11 +28,13 @@ class Main(qtc.QObject):
 
 
 
+
     #   Set period from HH:MM:SS input
     @qtc.Slot(str)
     def setPeriod(self, input):
         self.period = int(input[:2]) * 3600 + int(input[3:5]) * 60 + int(input[6:9])
         self.elapsed = 0
+
 
 
 
@@ -44,6 +47,8 @@ class Main(qtc.QObject):
             self.timer.stop()
 
 
+
+
     #   Returns period in HH:MM:SS
     @qtc.Slot(result=str)
     def getPeriod(self):
@@ -51,14 +56,26 @@ class Main(qtc.QObject):
 
 
 
+
+
     #   Timer tick handler
     def onTick(self):
         self.elapsed += 1
 
+
+        #   Check if countdown is completed
         if self.elapsed > self.period:
+
+            #   Play sound when soundOn and countdown is completed
+            if self.soundOn:
+                from os import system
+                system("aplay /mnt/Data/Projects/PRJ001-Productivity-Clock/proj/notify_sound.wav&")
+
             self.elapsed = 0
 
         self.sig_updateTime.emit(self.secondsToHMS(self.period - self.elapsed))
+
+
 
 
 
@@ -69,3 +86,13 @@ class Main(qtc.QObject):
         m = (input - (h * 3600)) // 60
         s = (input - (h * 3600) - (m * 60))
         return "{:02}".format(h) + ":" + "{:02}".format(m) + ":" + "{:02}".format(s)
+
+
+
+
+
+    #   Update soundOn value
+    #   Called by QML button onClicked
+    @qtc.Slot(bool)
+    def toggleSound(self, val):
+        self.soundOn = val

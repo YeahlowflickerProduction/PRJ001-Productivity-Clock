@@ -7,6 +7,7 @@ import QtQuick.Layouts 1.14
 ApplicationWindow
 {
     property bool counting: false
+    property bool soundOn: true
 
     id: root
     visible: true
@@ -53,6 +54,29 @@ ApplicationWindow
             font.pointSize: 16
 
             onClicked: toggleHandler()
+        }
+
+
+
+        //  Toggle sound
+        Button
+        {
+            id: soundToggle
+            implicitWidth: 100
+            implicitHeight: 30
+            Layout.alignment: Qt.AlignHCenter
+
+            contentItem: Text
+            {
+                horizontalAlignment: Text.AlignHCenter
+                text: soundOn ? "Sound: On" : "Sound: Off"
+                color: "white"
+            }
+
+            background: Rectangle { opacity: 0.1 }
+
+            onClicked:
+            { soundOn = !soundOn; manager.toggleSound(soundOn); }
         }
     }
 
