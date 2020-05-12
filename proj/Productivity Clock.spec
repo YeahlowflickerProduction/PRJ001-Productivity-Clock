@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['bootstrap.py'],
-             pathex=['/mnt/Data/Projects/PRJ001-Productivity-Clock/proj'],
+             pathex=['/mnt/YFP/Projects/PRJ001-Productivity-Clock/proj'],
              binaries=[],
              datas=[],
              hiddenimports=[],

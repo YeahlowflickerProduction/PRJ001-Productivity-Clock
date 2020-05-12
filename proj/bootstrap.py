@@ -18,8 +18,9 @@ if __name__ == "__main__":
 
 
     #   Define engine
+    from os.path import dirname, abspath
     engine = qtqml.QQmlApplicationEngine()
-    engine.load("/mnt/Data/Projects/PRJ001-Productivity-Clock/proj/main.qml")
+    engine.load("/mnt/YFP/Projects/PRJ001-Productivity-Clock/proj/main.qml")
 
 
     #   Define Main

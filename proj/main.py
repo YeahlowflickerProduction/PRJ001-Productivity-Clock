@@ -1,4 +1,4 @@
-from PySide2 import QtCore as qtc, QtWidgets as qtw, QtGui as qtgui, QtQml as qtqml
+from PySide2 import QtCore as qtc
 
 
 class Main(qtc.QObject):
@@ -69,7 +69,7 @@ class Main(qtc.QObject):
             #   Play sound when soundOn and countdown is completed
             if self.soundOn:
                 from os import system
-                system("aplay /mnt/Data/Projects/PRJ001-Productivity-Clock/proj/notify_sound.wav&")
+                system("aplay /mnt/YFP/Projects/PRJ001-Productivity-Clock/proj//notify_sound.wav&")
 
             self.elapsed = 0
 
